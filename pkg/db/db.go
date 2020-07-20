@@ -55,6 +55,14 @@ func (c *CacheDB) Get(key string) (string, bool) {
 func (c *CacheDB) Set(key, value string) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	c.items[key] = value
 
+	c.items[key] = value
+}
+
+//Delete removes a key from CacheDB
+func (c *CacheDB) Delete(key string) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	delete(c.items, key)
 }
