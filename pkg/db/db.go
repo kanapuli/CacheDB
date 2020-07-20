@@ -50,3 +50,11 @@ func (c *CacheDB) Get(key string) (string, bool) {
 	value, found := c.items[key]
 	return value, found
 }
+
+//Set adds a key value pair to Cachedb
+func (c *CacheDB) Set(key, value string) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.items[key] = value
+
+}
