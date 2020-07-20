@@ -66,3 +66,17 @@ func (c *CacheDB) Delete(key string) {
 
 	delete(c.items, key)
 }
+
+//Save saves the in-memory key value pairs to a persistent file
+func (c *CacheDB) Save(file string) error {
+	file, err := os.Open(file)
+	if err != nil {
+		fmt.Printf("Error opening persistent file %v to save", file)
+		return error
+	}
+	err = json.NewEncoder(f).Encode(c.items)
+	if err != nil {
+		fmt.Printf("Got error while saving key values to persistent file %v. Err: %v", file, err)
+	}
+	return err
+}
