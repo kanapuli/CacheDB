@@ -41,3 +41,12 @@ func NewCacheDB() *CacheDB {
 		items: oldKVPairs,
 	}
 }
+
+//Get retrieves a value stored in the CacheDB
+func (c *CacheDB) Get(key string) (string, bool) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	value, found := c.items[key]
+	return value, found
+}
