@@ -16,6 +16,11 @@ type Server struct {
 }
 
 //NewServer creates a new DB server and returns that instance to main func
-func NewServer() interface{} {
+func NewServer() *Server {
 	return nil
+}
+
+//Stop stops the CacheDB server
+func (s *Server) Stop() {
+
 }
